@@ -2,9 +2,10 @@ require "spec_helper"
 
 describe Genderize::Gender do
   
-  let(:female) { Gender.new("f") }
-  let(:male)   { Gender.new("M") }  
-  let(:blank)  { Gender.new('')  }
+  let(:female)  { Gender.new("f") }
+  let(:male)    { Gender.new("M") }
+  let(:blank)   { Gender.new('')  }
+  let(:invalid) { Gender.new('x') }
   
   context "when full gender name is used" do
     
@@ -32,6 +33,14 @@ describe Genderize::Gender do
         expect(female.name).to eql("female")
       end
       
+    end
+
+    context "when invalid" do
+
+      it "should be 'unknown'" do
+        expect(invalid.name).to eql("unknown")
+      end
+
     end
     
   end

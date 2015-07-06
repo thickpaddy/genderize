@@ -1,17 +1,13 @@
 module Genderize
-  class Gender
+  class Gender < String
   
-    include I18n
-    
     attr_reader :abbr
-    
+
     def initialize(abbr)
-      if abbr.to_s !~ /\A(|f|m|female|male)\Z/i
-        raise "Invalid abbreviation: '#{abbr}'" 
-      end
       @abbr = abbr.to_s.downcase.first
+      super(@abbr)
     end
-    
+
     def name
       @name ||= translation_for("name")
     end
@@ -37,7 +33,7 @@ module Genderize
     end
   
     def unknown?
-      abbr.to_s == ''
+      !male? && !female?
     end
     
     def male?
@@ -48,12 +44,8 @@ module Genderize
       abbr == 'f'
     end
   
-    def to_s
-      abbr
-    end
-  
     def ==(val)
-      abbr.to_s == val.to_s
+      abbr == val.to_s
     end
   
   

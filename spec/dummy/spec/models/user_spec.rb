@@ -1,10 +1,50 @@
 require 'spec_helper'
 
 describe User do
-  
+
+  let(:user) { User.new }
+
+  describe "validations" do
+
+    context "when gender is set to a valid value" do
+
+      before do
+        user.gender = %w[ f m female male ].sample
+      end
+
+      it "user should be valid" do
+        expect(user).to be_valid
+      end
+
+    end
+
+    context "when gender is set to nil" do
+
+      before do
+        user.gender = nil
+      end
+
+      it "user should be valid" do
+        expect(user).to be_valid
+      end
+
+    end
+
+    context "when gender is set to an invalid value" do
+
+      before do
+        user.gender = "bar"
+      end
+
+      it "user should not be valid" do
+        expect(user).not_to be_valid
+      end
+
+    end
+
+  end
+
   describe "gender" do
-    
-    let(:user) { User.new }
       
     context "when gender is set to a valid value" do
 
