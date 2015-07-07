@@ -1,11 +1,12 @@
 module Genderize
   class Gender < String
   
-    attr_reader :abbr
+    def initialize(value)
+      super(value.to_s)
+    end
 
-    def initialize(abbr)
-      @abbr = abbr.to_s.downcase.first
-      super(@abbr)
+    def abbr
+      @abbr ||= self.downcase.first
     end
 
     def name
@@ -44,13 +45,7 @@ module Genderize
       abbr == 'f'
     end
   
-    def ==(val)
-      abbr == val.to_s
-    end
-  
-  
     private
-  
     
     def translation_for(key)
       case

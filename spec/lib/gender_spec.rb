@@ -190,41 +190,11 @@ describe Genderize::Gender do
     
   end
   
-  describe :to_s do
-    
-    it "should equal the abbr value" do
-      expect(male.to_s).to   eql(male.abbr)
-      expect(female.to_s).to eql(female.abbr)      
-    end
-    
-    it "returns a string" do
-      expect(male.to_s).to be_an_instance_of(String)
-      expect(female.to_s).to be_an_instance_of(String)      
-    end
-    
-  end
-  
   describe :capital_abbr do
     
     it "should equal the abbr value capitalized" do
       expect(male.capital_abbr).to eql(male.abbr.capitalize)
       expect(female.capital_abbr).to eql(female.abbr.capitalize)
-    end
-    
-  end
-  
-  describe :== do
-    
-    it "returns true if passed abbr value" do
-      expect(male == "m").to be_truthy
-      expect(female == "f").to be_truthy 
-      expect(blank == nil ).to be_truthy     
-    end
-
-    it "returns false if not passed abbr value" do
-      expect(male   == "f").to be_falsey
-      expect(female == 1  ).to be_falsey
-      expect(blank  == "$").to be_falsey          
     end
     
   end

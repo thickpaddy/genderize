@@ -12,7 +12,6 @@ module Genderize
   end
   
   module ClassMethods
-
     
     def genderize(col_name = "gender")
       # Reads the DB column value for gender attribute and creates a new Gender 

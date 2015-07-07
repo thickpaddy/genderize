@@ -33,7 +33,7 @@ describe User do
     context "when gender is set to an invalid value" do
 
       before do
-        user.gender = "bar"
+        user.gender = "foo"
       end
 
       it "user should not be valid" do
@@ -46,14 +46,34 @@ describe User do
 
   describe "gender" do
       
-    context "when gender is set to a valid value" do
+    context "when gender is set to a valid abbreviation" do
 
       before do
-        user.gender = %w[ f m female male ].sample
+        user.gender = %w[ f m ].sample
       end
       
       it "returns a Gender object" do
         expect(user.gender).to be_an_instance_of(Gender)
+      end
+
+      it "does not modify the attribute value" do
+        expect(%w[ f m ]).to include(user.gender)
+      end
+      
+    end
+
+    context "when gender is set to a valid gender name" do
+
+      before do
+        user.gender = %w[ female male ].sample
+      end
+      
+      it "returns a Gender object" do
+        expect(user.gender).to be_an_instance_of(Gender)
+      end
+
+      it "does not modify the underling attribute value" do
+        expect(%w[ female male ]).to include(user.gender)
       end
       
     end
@@ -78,6 +98,10 @@ describe User do
       
       it "returns an unknown gender" do
         expect(user.gender).to be_unknown
+      end
+
+      it "sets the attribute value to an empty string" do
+        expect(user.gender).to eql('')
       end
       
     end

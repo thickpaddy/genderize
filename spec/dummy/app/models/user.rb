@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   # test the genderize behaviour with a column of a different name
   genderize(:name)
 
-  validates_inclusion_of :gender, in: %w{m f}, allow_blank: true
+  validates_inclusion_of :gender, in: %w{f m female male}, allow_blank: true
 end
